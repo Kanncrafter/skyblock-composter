@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Composter Master - Final Build</title>
+    <title>Composter Master - LIVE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background-color: #0d1117; color: #c9d1d9; font-family: 'Inter', sans-serif; }
@@ -25,10 +25,10 @@
     <header class="mb-8 border-b border-[#30363d] pb-6 flex justify-between items-center">
         <div>
             <h1 class="text-3xl font-black text-white uppercase italic tracking-tighter">Composter <span class="text-[#238636]">Master</span></h1>
-            <p class="text-[#8b949e] text-[10px] font-bold tracking-[0.3em] uppercase mt-1">Live Bazaar & Local Assets</p>
+            <p class="text-[#8b949e] text-[10px] font-bold tracking-[0.3em] uppercase mt-1">Live Bazaar Online</p>
         </div>
         <div class="text-right glass !py-2 !px-4 border-emerald-500/30 cursor-pointer" onclick="fetchPrices()">
-            <p class="text-[9px] uppercase font-bold text-gray-500 mb-1">Bazaar Status (Refresh)</p>
+            <p class="text-[9px] uppercase font-bold text-gray-500 mb-1">Bazaar Status</p>
             <p id="statusDisplay" class="text-yellow-500 font-bold text-xs uppercase">Verbinde...</p>
         </div>
     </header>
@@ -70,14 +70,7 @@
                 </div>
             </div>
 
-            <div class="glass min-h-[300px]">
-                <div class="flex justify-between items-center mb-6">
-                    <h3 id="detailTitle" class="text-white font-bold uppercase italic text-sm underline decoration-[#238636] decoration-2 underline-offset-8">EINKAUFSLISTE (SORTIERT)</h3>
-                    <div id="nextTierLabel" class="tier-badge">MODE: ALL UPGRADES</div>
-                </div>
-                <div id="materialList" class="space-y-3"></div>
-                <div id="maxMsg" class="hidden flex flex-col items-center justify-center py-20 text-gray-400 font-bold uppercase tracking-widest">🏆 Maximum erreicht!</div>
-            </div>
+            <div id="materialList" class="space-y-3"></div>
         </div>
     </div>
 </div>
@@ -86,27 +79,27 @@
 const localPath = "img/";
 
 const itemConfig = {
-    "Copper":                        { id: "COPPER",                      img: "copper.png" },
-    "Cropie":                        { id: "CROPIE",                      img: "cropie.png" },
-    "Squash":                        { id: "SQUASH",                      img: "squash.png" },
-    "Fermento":                      { id: "FERMENTO",                    img: "fermento.png" },
-    "Condenset Fermento":            { id: "CONDENSED_FERMENTO",          img: "condensed_fermento.png" },
-    "Enchanted Enchanted Wheat":     { id: "ENCHANTED_HAY_BALE",          img: "Enchanted_wheat.png" },
-    "Enchanted Hay Bale":            { id: "ENCHANTED_HAY_BALE",          img: "enchanted_hay_bale.png" },
-    "Enchanted Wheat":               { id: "ENCHANTED_HAY_BALE",          img: "Enchanted_wheat.png" },
-    "Enchanted Golden Carrot":       { id: "ENCHANTED_GOLDEN_CARROT",     img: "enchanted_golden_carrot.png" },
+    "Copper": { id: "COPPER", img: "copper.png" },
+    "Cropie": { id: "CROPIE", img: "cropie.png" },
+    "Squash": { id: "SQUASH", img: "squash.png" },
+    "Fermento": { id: "FERMENTO", img: "fermento.png" },
+    "Condenset Fermento": { id: "CONDENSED_FERMENTO", img: "condensed_fermento.png" },
+    "Enchanted Enchanted Wheat": { id: "ENCHANTED_HAY_BALE", img: "Enchanted_wheat.png" },
+    "Enchanted Hay Bale": { id: "ENCHANTED_HAY_BALE", img: "enchanted_hay_bale.png" },
+    "Enchanted Wheat": { id: "ENCHANTED_HAY_BALE", img: "Enchanted_wheat.png" },
+    "Enchanted Golden Carrot": { id: "ENCHANTED_GOLDEN_CARROT", img: "enchanted_golden_carrot.png" },
     "Enchanted Golden Enchanted Golden Carrot": { id: "ENCHANTED_GOLDEN_CARROT", img: "enchanted_golden_carrot.png" },
-    "Enchanted Melon Block":         { id: "ENCHANTED_MELON_BLOCK",       img: "Enchanted_Melon.png" },
-    "Enchanted Pumpkin":             { id: "ENCHANTED_PUMPKIN",           img: "Enchanted_pumpkin.png" },
-    "Polished Pumpkin":              { id: "POLISHED_PUMPKIN",            img: "Polished_Pumpkin.png" },
-    "Enchanted Sugar Cane":          { id: "ENCHANTED_SUGAR_CANE",        img: "Enchanted_Sugar_Cane.png" },
-    "Enchanted Red Mushroom Block":  { id: "ENCHANTED_RED_MUSHROOM_BLOCK", img: "Enchanted_Red_Mushroom_Block.png" },
-    "Enchanted Baked Potato":        { id: "ENCHANTED_BAKED_POTATO",      img: "enchanted_baked_potato.png" },
-    "Mutant Nether Wart Block":      { id: "MUTANT_NETHER_WART_BLOCK",    img: "mutant_nether_wart.png" },
-    "Enchanted Brown Mushroom":      { id: "ENCHANTED_BROWN_MUSHROOM",    img: "Enchanted_Brown_Mushroom.png" },
-    "Enchanted Brown Mushroom Block":{ id: "ENCHANTED_BROWN_MUSHROOM_BLOCK",img: "Enchanted_Brown_Mushroom_Block.png" },
-    "Enchanted Cookie":              { id: "ENCHANTED_COOKIE",             img: "Enchanted_Cookie.png" },
-    "Enchanted Cactus":              { id: "ENCHANTED_CACTUS",             img: "Enchanted_Cactus.png" },
+    "Enchanted Melon Block": { id: "ENCHANTED_MELON_BLOCK", img: "Enchanted_Melon.png" },
+    "Enchanted Pumpkin": { id: "ENCHANTED_PUMPKIN", img: "Enchanted_pumpkin.png" },
+    "Polished Pumpkin": { id: "POLISHED_PUMPKIN", img: "Polished_Pumpkin.png" },
+    "Enchanted Sugar Cane": { id: "ENCHANTED_SUGAR_CANE", img: "Enchanted_Sugar_Cane.png" },
+    "Enchanted Red Mushroom Block": { id: "ENCHANTED_RED_MUSHROOM_BLOCK", img: "Enchanted_Red_Mushroom_Block.png" },
+    "Enchanted Baked Potato": { id: "ENCHANTED_BAKED_POTATO", img: "enchanted_baked_potato.png" },
+    "Mutant Nether Wart Block": { id: "MUTANT_NETHER_WART_BLOCK", img: "mutant_nether_wart.png" },
+    "Enchanted Brown Mushroom": { id: "ENCHANTED_BROWN_MUSHROOM", img: "Enchanted_Brown_Mushroom.png" },
+    "Enchanted Brown Mushroom Block": { id: "ENCHANTED_BROWN_MUSHROOM_BLOCK", img: "Enchanted_Brown_Mushroom_Block.png" },
+    "Enchanted Cookie": { id: "ENCHANTED_COOKIE", img: "Enchanted_Cookie.png" },
+    "Enchanted Cactus": { id: "ENCHANTED_CACTUS", img: "Enchanted_Cactus.png" },
 };
 
 const tiers = [
@@ -122,7 +115,7 @@ const tiers = [
     { copper: 700, item: "Cropie", qty: 12, crops: { speed: "32x Enchanted Golden Carrot", drops: "8x Polished Pumpkin", fuel: "40x Enchanted Melon Block", matter: "48x Enchanted Baked Potato", cost: "16x Mutant Nether Wart Block" }},
     { copper: 800, item: "Cropie", qty: 24, crops: { speed: "16x Enchanted Hay Bale", drops: "32x Enchanted Baked Potato", fuel: "32x Enchanted Sugar Cane", matter: "16x Enchanted Cactus", cost: "24x Enchanted Red Mushroom Block" }},
     { copper: 900, item: "Cropie", qty: 48, crops: { speed: "40x Enchanted Golden Carrot", drops: "16x Polished Pumpkin", fuel: "48x Enchanted Melon Block", matter: "64x Enchanted Baked Potato", cost: "32x Mutant Nether Wart Block" }},
-    { copper: 1000, item: "Cropie", qty: 96, crops: { speed: "24x Enchanted Hay Bale", drops: "48x Enchanted Baked Potato", fuel: "40x Enchanted Sugar Cane", matter: "24x Enchanted Cactus", cost: "32x Enchanted Brown Mushroom Block" }},
+    { copper: 1000, item: "Cropie", qty: 96, crops: { speed: "24x Enchanted Hay Bale", drops: "48x Enchanted Baked Potato", fuel: "40x Enchanted Sugar Cane", matter: "24x Enchanted Mushroom", cost: "32x Enchanted Brown Mushroom Block" }},
     { copper: 1200, item: "Squash", qty: 3, crops: { speed: "48x Enchanted Golden Carrot", drops: "24x Polished Pumpkin", fuel: "64x Enchanted Melon Block", matter: "96x Enchanted Baked Potato", cost: "48x Mutant Nether Wart Block" }},
     { copper: 1400, item: "Squash", qty: 6, crops: { speed: "32x Enchanted Hay Bale", drops: "64x Enchanted Baked Potato", fuel: "48x Enchanted Sugar Cane", matter: "32x Enchanted Cactus", cost: "48x Enchanted Red Mushroom Block" }},
     { copper: 1600, item: "Squash", qty: 12, crops: { speed: "64x Enchanted Golden Carrot", drops: "32x Polished Pumpkin", fuel: "96x Enchanted Melon Block", matter: "128x Enchanted Baked Potato", cost: "64x Mutant Nether Wart Block" }},
@@ -143,146 +136,78 @@ const catKeyMap = { speed: 'speed', multi_drop: 'drops', fuel_cap: 'fuel', organ
 
 async function fetchPrices() {
     document.getElementById('statusDisplay').innerText = "LADE...";
-    const apiURL = 'https://api.hypixel.net/skyblock/bazaar';
-    const proxies = [
-        `https://api.allorigins.win/get?url=${encodeURIComponent(apiURL)}`,
-        `https://corsproxy.io/?${encodeURIComponent(apiURL)}`,
-        `https://thingproxy.freeboard.io/fetch/${apiURL}`
-    ];
-
-    for (let proxy of proxies) {
-        try {
-            const response = await fetch(proxy);
-            if (!response.ok) continue;
-            const rawData = await response.json();
-            const data = rawData.contents ? JSON.parse(rawData.contents) : rawData;
-            if (data.success) {
-                bazaarPrices = data.products;
-                document.getElementById('statusDisplay').innerText = "LIVE";
-                document.getElementById('statusDisplay').className = "text-emerald-500 font-bold text-xs uppercase";
-                calculate();
-                return;
-            }
-        } catch (e) { console.error("Proxy failed"); }
+    try {
+        const res = await fetch('https://api.slothpixel.me/api/skyblock/bazaar');
+        const data = await res.json();
+        
+        // Konvertierung von Slothpixel zu Hypixel-Format
+        bazaarPrices = {};
+        for (const [id, info] of Object.entries(data)) {
+            bazaarPrices[id] = { quick_status: { buyPrice: info.quick_status.buyPrice } };
+        }
+        
+        document.getElementById('statusDisplay').innerText = "LIVE (SLOTH)";
+        document.getElementById('statusDisplay').className = "text-emerald-500 font-bold text-xs uppercase";
+        calculate();
+    } catch (e) {
+        document.getElementById('statusDisplay').innerText = "FEHLER (OFFLINE)";
     }
-    document.getElementById('statusDisplay').innerText = "API FEHLER";
-}
-
-function getPrice(id) {
-    if (bazaarPrices[id]) return bazaarPrices[id].quick_status.buyPrice;
-    return 0;
-}
-
-function formatPrice(num) {
-    if (num <= 0) return "---";
-    if (num >= 1000000) return (num / 1000000).toFixed(1) + "M";
-    if (num >= 1000) return (num / 1000).toFixed(0) + "k";
-    return Math.floor(num).toLocaleString();
 }
 
 function calculate() {
     const mode = document.getElementById('lvlInput').value;
     const list = document.getElementById('materialList');
-    const maxMsg = document.getElementById('maxMsg');
-    
     list.innerHTML = "";
-    maxMsg.classList.add('hidden');
+    let totalCopper = 0; let totalCoins = 0; let aggregated = {};
 
-    let totalCopper = 0;
-    let totalCoins = 0;
-    let aggregated = {}; // { ID: { name: "", qty: 0, img: "" } }
-
-    const processTier = (tierData) => {
-        totalCopper += tierData.copper;
-        
-        // 1. Crop-Teil
-        const cropStr = tierData.crops[catKeyMap[currentCat]];
-        const parts = cropStr.split('x ');
-        const qty = parseInt(parts[0]);
-        const nameKey = parts[1].trim();
-        const conf = itemConfig[nameKey];
-
+    const process = (t) => {
+        totalCopper += t.copper;
+        const cS = t.crops[catKeyMap[currentCat]].split('x ');
+        const qty = parseInt(cS[0]); const name = cS[1].trim();
+        const conf = itemConfig[name];
         if(conf) {
-            if(!aggregated[conf.id]) aggregated[conf.id] = { name: nameKey, qty: 0, img: conf.img };
+            if(!aggregated[conf.id]) aggregated[conf.id] = { name: name, qty: 0, img: conf.img };
             aggregated[conf.id].qty += qty;
         }
-
-        // 2. Upgrade-Item
-        if (tierData.item) {
-            const iConf = itemConfig[tierData.item];
-            if(iConf) {
-                if(!aggregated[iConf.id]) aggregated[iConf.id] = { name: tierData.item, qty: 0, img: iConf.img };
-                aggregated[iConf.id].qty += tierData.qty;
+        if (t.item) {
+            const iC = itemConfig[t.item];
+            if(iC) {
+                if(!aggregated[iC.id]) aggregated[iC.id] = { name: t.item, qty: 0, img: iC.img };
+                aggregated[iC.id].qty += t.qty;
             }
         }
     };
 
-    if (mode === "all") {
-        document.getElementById('nextTierLabel').innerText = "MODE: ALLE UPGRADES";
-        tiers.forEach(processTier);
-    } else {
-        const lvl = parseInt(mode);
-        document.getElementById('nextTierLabel').innerText = `STUFE ${lvl} → ${lvl+1}`;
-        processTier(tiers[lvl]);
-    }
+    if(mode === "all") tiers.forEach(process);
+    else process(tiers[parseInt(mode)]);
 
-    // Statistik-Karten füllen
-    document.getElementById('statCopper').innerText = totalCopper.toLocaleString();
-
-    // In Array umwandeln für Sortierung
     let displayItems = [];
-    for (const id in aggregated) {
-        const item = aggregated[id];
-        const cost = getPrice(id) * item.qty;
-        totalCoins += cost;
-        displayItems.push({ ...item, totalCost: cost });
+    for(const id in aggregated) {
+        const price = (bazaarPrices[id]?.quick_status.buyPrice || 0) * aggregated[id].qty;
+        totalCoins += price;
+        displayItems.push({...aggregated[id], totalCost: price});
     }
+    displayItems.sort((a,b) => b.totalCost - a.totalCost);
 
-    // Nach Preis sortieren (Teuerstes oben)
-    displayItems.sort((a, b) => b.totalCost - a.totalCost);
-
-    // Kupfer-Zeile (immer oben)
-    addRow(`${totalCopper.toLocaleString()} Kupfer`, "GESAMT BELOHNUNG", "Kupfer", true, localPath + "copper.png");
-
-    // Items rendern
-    displayItems.forEach(item => {
-        addRow(`${item.qty.toLocaleString()}x ${item.name}`, "ZUSAMMENGEFASST", formatPrice(item.totalCost), false, localPath + item.img);
-    });
-
+    addRow(`${totalCopper.toLocaleString()} Kupfer`, "Gesamt", "Kupfer", true, localPath + "copper.png");
+    displayItems.forEach(i => addRow(`${i.qty.toLocaleString()}x ${i.name}`, "Bazaar", formatPrice(i.totalCost), false, localPath + i.img));
+    
+    document.getElementById('statCopper').innerText = totalCopper.toLocaleString();
     document.getElementById('statItems').innerText = displayItems.length;
     document.getElementById('statCoins').innerText = formatPrice(totalCoins);
 }
 
-function addRow(title, sub, right, isCopper, imgPath) {
-    const list = document.getElementById('materialList');
-    list.innerHTML += `
-        <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg border border-white/5 hover:border-white/10 transition-all">
-            <div class="flex items-center gap-4">
-                <img src="${imgPath}" class="item-icon" onerror="this.src='img/copper.png'">
-                <div>
-                    <span class="text-sm font-bold text-white block leading-none">${title}</span>
-                    <span class="text-[9px] text-gray-500 uppercase tracking-widest font-bold mt-1 block">${sub}</span>
-                </div>
-            </div>
-            <div class="${isCopper ? 'text-orange-500' : 'price-tag'} text-xs font-bold uppercase italic">${right}</div>
-        </div>`;
+function addRow(t, s, r, c, img) {
+    document.getElementById('materialList').innerHTML += `<div class="flex justify-between items-center p-4 bg-white/5 rounded-lg border border-white/5 hover:border-white/10 transition-all"><div class="flex items-center gap-4"><img src="${img}" class="item-icon" onerror="this.src='https://mc-heads.net/head/010101'"><div><span class="text-sm font-bold text-white block leading-none">${t}</span><span class="text-[9px] text-gray-500 uppercase tracking-widest font-bold mt-1 block">${s}</span></div></div><div class="${c?'text-orange-500':'price-tag'} text-xs font-bold uppercase italic">${r}</div></div>`;
 }
 
-function setCat(cat, el) {
-    currentCat = cat;
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    el.classList.add('active');
-    document.getElementById('detailTitle').innerText = `LISTE: ${cat.replace('_',' ').toUpperCase()}`;
-    calculate();
-}
+function formatPrice(n) { if(n>=1e6) return (n/1e6).toFixed(1)+"M"; if(n>=1e3) return (n/1e3).toFixed(0)+"k"; return Math.floor(n).toLocaleString(); }
+function setCat(c, e) { currentCat = c; document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active')); e.classList.add('active'); calculate(); }
 
-const select = document.getElementById('lvlInput');
-for(let i=0; i<25; i++) {
-    select.innerHTML += `<option value="${i}">Stufe ${i} → ${i+1}</option>`;
-}
+const sel = document.getElementById('lvlInput');
+for(let i=0; i<25; i++) sel.innerHTML += `<option value="${i}">Stufe ${i} → ${i+1}</option>`;
 
 fetchPrices();
-setInterval(fetchPrices, 60000);
 </script>
 </body>
 </html>
